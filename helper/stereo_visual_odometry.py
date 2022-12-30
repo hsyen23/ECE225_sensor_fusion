@@ -7,14 +7,14 @@ from scipy.optimize import least_squares
 # from lib.visualization.video import play_trip
 
 from tqdm import tqdm
-
-
+    
 class VisualOdometry():
     def __init__(self, data_dir):
+        self.create_calib_file(data_dir)
         self.K_l, self.P_l, self.K_r, self.P_r = self._load_calib(data_dir + '/calib.txt')
         #self.gt_poses = self._load_poses(data_dir + '/poses.txt')
-        self.images_l = self._load_images(data_dir + '/image_l')
-        self.images_r = self._load_images(data_dir + '/image_r')
+        self.images_l = self._load_images(data_dir + '/image_00/data')
+        self.images_r = self._load_images(data_dir + '/image_01/data')
 
         block = 11
         P1 = block * block * 8
@@ -380,6 +380,29 @@ class VisualOdometry():
         # Estimate the transformation matrix
         transformation_matrix = self.estimate_pose(tp1_l, tp2_l, Q1, Q2)
         return transformation_matrix
+
+    def create_calib_file(self, filepath):
+        read_file = open(filepath + "/calib_cam_to_cam.txt")
+        Lines = read_file.readlines()
+        
+        p_rect_00 = Lines[9]
+        p_rect_01 = Lines[17]
+
+        p_rect_00 = p_rect_00.split(' ')
+        p_rect_01 = p_rect_01.split(' ')
+
+        p_rect_00 = p_rect_00[1:]
+        p_rect_01 = p_rect_01[1:]
+
+        p_rect_00 = ' '.join(p_rect_00)
+        p_rect_01 = ' '.join(p_rect_01)
+
+        read_file.close()
+
+        write_file = open(filepath + "/calib.txt", "a")
+        write_file.write(p_rect_00)
+        write_file.write(p_rect_01)
+        write_file.close()
 
 
 def main():

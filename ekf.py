@@ -145,8 +145,8 @@ class EKF:
         return F
 if __name__ == "__main__":
     ekf = EKF()
-    VO = np.load('./KITTI/2011_09_30/Odometry_data/vo.npy')
-    IMU = np.load('./KITTI/2011_09_30/Odometry_data/imu.npy')
+    VO = np.load('./Odometry_data/vo.npy')
+    IMU = np.load('./Odometry_data/imu.npy')
 
     bool_list = [False, False, False, False, False, False, True, True, True, True, True, True, False, False, False, False, False, False]
 
@@ -180,5 +180,5 @@ if __name__ == "__main__":
         ekf.update_step(IMU[i], bool_list, noise_covariance = IMU_covariance)
 
     plt.scatter(pose[:,0], pose[:,1], s = 1)
-    plt.axis('equal')
+    #plt.axis('equal')
     plt.show()

@@ -3,11 +3,11 @@ import glob
 import numpy as np
 import matplotlib.pyplot as plt
 
-data_dir = '../KITTI/2011_09_30/2011_09_30_drive_0020_sync/stereo_data'
+data_dir = '../KITTI'
 vo = VisualOdometry(data_dir)
 
 # find number of images
-img_dir = '../KITTI/2011_09_30/2011_09_30_drive_0020_sync/stereo_data/image_l'
+img_dir = '../KITTI/image_00/data'
 img_names = glob.glob(img_dir + '/*.png')
 n = len(img_names)
 
@@ -42,7 +42,8 @@ for i in range(1, n):
     pre_state = wolrd_frame_pose
 
 VO_data[-1] = VO_data[-2]
-np.save('../KITTI/2011_09_30/Odometry_data/vo', VO_data*hz)
+np.save('../Odometry_data/vo', VO_data*hz)
 
-plt.scatter(pose[:,0], pose[:,1])
-plt.show()
+# plot the trajectory based on VO
+# plt.scatter(pose[:,0], pose[:,1])
+# plt.show()
