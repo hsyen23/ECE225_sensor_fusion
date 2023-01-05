@@ -4,6 +4,16 @@ Python version of robot_localization pkg in ROS.
 
 `helper/getVIO.py` and `helper/getOdometry.py` generate `imu.npy` and `vo.npy` for running an example in `ekf`.
 
-Explanation of algorithm is written in report pdf. 
+Explanation of algorithm is written in report pdf.
 
+
+# Example
+
+## IMU trajectory
+![Alt text](/pic/imu_trajectory.png "imu_trajectory")
+
+## Visual Odometry trajectory
+![Alt text](/pic/vio_trajectory.png "vio_trajectory")
+
+## sensor fusion (ekf)
 ![Alt text](/pic/VIO+IMU.png "VIO+IMU")
