@@ -15,5 +15,5 @@ Explanation of algorithm is written in report pdf.
 ## Visual Odometry trajectory
 ![Alt text](/pic/vio_trajectory.png "vio_trajectory")
 
-## sensor fusion (ekf)
+## Sensor fusion (ekf)
 ![Alt text](/pic/VIO+IMU.png "VIO+IMU")
